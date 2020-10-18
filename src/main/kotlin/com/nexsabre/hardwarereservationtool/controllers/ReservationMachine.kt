@@ -4,9 +4,14 @@ import com.nexsabre.hardwarereservationtool.models.Element
 import com.nexsabre.hardwarereservationtool.models.Machine
 import com.nexsabre.hardwarereservationtool.models.toElement
 import org.jetbrains.exposed.exceptions.ExposedSQLException
-import org.jetbrains.exposed.sql.SizedIterable
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
+
+fun allMachines(): List<Element> {
+    return transaction {
+        return@transaction Machine.all().map { it.toElement() }
+    }
+}
 
 
 class ReservationMachine {
@@ -44,13 +49,8 @@ class ReservationMachine {
         return null
     }
 
-    fun allMachines(): SizedIterable<Machine> {
-        return transaction {
-            return@transaction Machine.all()
-        }
-    }
 
-    fun getAvailable(): List<Machine> = allMachines().filter { it.reservationStart == null}
+    fun getAvailable(): List<Element> = allMachines().filter { it.start == null}
 
     fun isAvailable(machineId: Int): Boolean {
         val machine = this.get(machineId) ?: return false

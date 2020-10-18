@@ -11,5 +11,4 @@ class End2EndTest {
         val response = makeRequest(endpoint = "/api/v1/reservations")
         assertThat(response).isEqualTo("[]")
     }
-
 }
