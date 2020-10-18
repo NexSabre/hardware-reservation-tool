@@ -18,7 +18,8 @@ class HardwareReservationToolApplicationTests(@Autowired val restTemplate: TestR
         val firstMachine = allMachines()[0]
 
         val entity = restTemplate.getForEntity<String>("/api/v1/reserve/${firstMachine.id}")
-        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK).withFailMessage(
+                "Should return 200 and machines should be available on endpoint")
     }
 
     @Test
@@ -26,6 +27,8 @@ class HardwareReservationToolApplicationTests(@Autowired val restTemplate: TestR
         deleteAllExampleMachines()
 
         val entity = restTemplate.getForEntity<String>("/api/v1/reserve/1")
-        assertThat(entity.statusCode).isEqualTo(HttpStatus.NOT_FOUND)
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.NOT_FOUND).withFailMessage(
+                "Should return 404 and machines should not exists"
+        )
     }
 }
