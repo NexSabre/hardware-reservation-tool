@@ -1,19 +1,12 @@
-package com.nexsabre.hardwarereservationtool
+package com.nexsabre.hardwarereservationtool.api.v1
 
-import com.nexsabre.hardwarereservationtool.api.v1.Element
+import com.nexsabre.hardwarereservationtool.models.Element
 import com.nexsabre.hardwarereservationtool.models.Machine
+import com.nexsabre.hardwarereservationtool.models.toElement
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
-fun Machine.toElement() = Element(
-        id = id.value,
-        name = name,
-        address = address,
-        start = reservationStart,
-        ends = reservationEnds
-)
 
 @RestController
 @RequestMapping("/api/v1")
@@ -39,5 +32,4 @@ class Reserve {
 
         }
     }
-
 }
