@@ -62,6 +62,7 @@ open class BaseTest {
                 Machine.findById(machineId)?.delete()
             }
         } catch (e: ExposedSQLException) {
+            println("Can not delete example machine with id: $machineId")
         }
     }
 }
