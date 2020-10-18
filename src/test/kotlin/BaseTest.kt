@@ -7,6 +7,8 @@ import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.DateTime
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -20,6 +22,11 @@ open class BaseTest {
         transaction {
             SchemaUtils.create(Machines)
         }
+    }
+
+    @AfterEach
+    fun clean() {
+        deleteAllExampleMachines()
     }
 
     protected fun addExampleMachine() {
@@ -63,6 +70,25 @@ open class BaseTest {
             }
         } catch (e: ExposedSQLException) {
             println("Can not delete example machine with id: $machineId")
+        }
+    }
+
+    protected fun getFirstAvailable(): Machine? {
+        return transaction {
+            return@transaction Machine.all().firstOrNull { it.reservationStart == null }
+        }
+    }
+
+    protected fun getFirstReserved(): Machine? {
+        return transaction {
+            return@transaction Machine.all().firstOrNull { it.reservationStart != null }
+        }
+    }
+
+    protected fun reserveFirstMachine() {
+        val availableMachine = getFirstAvailable()
+        transaction {
+            availableMachine?.reservationStart = DateTime.now()
         }
     }
 }
