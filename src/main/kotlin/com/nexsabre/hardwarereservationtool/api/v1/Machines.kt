@@ -20,8 +20,11 @@ class Machines {
 
     @PostMapping
     fun postAddMachine(@RequestBody newMachine: AddNewMachine): ResponseEntity<String> {
-        ReservationMachine().create(name = newMachine.name, address = newMachine.address, null, null)
-        return ResponseEntity(HttpStatus.CREATED)
+        return when(ReservationMachine()
+                .create(name = newMachine.name, address = newMachine.address, null, null)) {
+            true -> ResponseEntity(HttpStatus.CREATED)
+            false -> ResponseEntity(HttpStatus.CONFLICT)
+        }
     }
 
 }

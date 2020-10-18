@@ -16,18 +16,23 @@ fun allMachines(): List<Element> {
 
 class ReservationMachine {
 
-    fun create(name: String, address: String, start: DateTime?, ends: DateTime?) {
+    fun create(name: String, address: String, start: DateTime?, ends: DateTime?): Boolean {
         try {
-            transaction {
+            return transaction {
+                val machinesBeforeNewOne = Machine.all().map { it.toElement() }.size
                 Machine.new {
                     this.name = name
                     this.address = address
                     this.reservationStart = start
                     this.reservationEnds = ends
                 }
+
+                val machinesAfterAddingNewOne = Machine.all().map { it.toElement() }.size
+                return@transaction machinesAfterAddingNewOne != machinesBeforeNewOne
             }
         } catch (e: ExposedSQLException) {
             println("Cannot create a new Machine($name, $address, $start, $ends)")
+            return false
         }
     }
 
