@@ -2,12 +2,17 @@ package com.nexsabre.hardwarereservationtool.api.v1
 
 import com.nexsabre.hardwarereservationtool.models.Machine
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.DateTime
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-data class Element(val id: Int?, val name: String?, val address: String?, val start: Any?, val ends: Any?)
+data class Element(val id: Int? = null,
+                   val name: String?,
+                   val address: String?,
+                   val start: DateTime? = null,
+                   val ends: DateTime? = null)
 
 @RestController
 @RequestMapping("/api/v1/reservations")
