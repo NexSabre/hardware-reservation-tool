@@ -42,6 +42,22 @@ class ReservationMachine {
         }
     }
 
+    fun delete(machineId: Int): Boolean {
+        try {
+            return transaction {
+                val machinesBeforeNewOne = Machine.all().map { it.toElement() }.size
+
+                Machine.findById(machineId)?.delete()
+
+                val machinesAfterAddingNewOne = Machine.all().map { it.toElement() }.size
+                return@transaction machinesAfterAddingNewOne != machinesBeforeNewOne
+            }
+        } catch(e: ExposedSQLException) {
+            println("Can not remove machine id: $machineId")
+            return false
+        }
+    }
+
     fun get(machineId: Int): Element? {
         try {
             return transaction {

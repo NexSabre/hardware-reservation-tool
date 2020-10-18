@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-data class AddNewMachine(val name: String, val address: String)
-
+data class AddMachine(val name: String, val address: String)
+data class DeleteMachine(val name: String, val address: String)
 
 @RestController
 @RequestMapping("/api/v1/machines")
@@ -19,12 +19,19 @@ class Machines {
     }
 
     @PostMapping
-    fun postAddMachine(@RequestBody newMachine: AddNewMachine): ResponseEntity<String> {
+    fun postAddMachine(@RequestBody machine: AddMachine): ResponseEntity<String> {
         return when(ReservationMachine()
-                .create(name = newMachine.name, address = newMachine.address, null, null)) {
+                .create(name = machine.name, address = machine.address, null, null)) {
             true -> ResponseEntity(HttpStatus.CREATED)
             false -> ResponseEntity(HttpStatus.CONFLICT)
         }
     }
 
+    @GetMapping("/{machineId}/delete")
+    fun deleteMachine(@PathVariable machineId: Int): ResponseEntity<String> {
+        return when(ReservationMachine().delete(machineId)) {
+            true -> ResponseEntity(HttpStatus.NO_CONTENT)
+            false -> ResponseEntity(HttpStatus.OK)
+        }
+    }
 }
