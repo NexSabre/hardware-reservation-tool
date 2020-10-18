@@ -1,15 +1,14 @@
-import com.nexsabre.hardwarereservationtool.api.v1.Element
 import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
+import com.nexsabre.hardwarereservationtool.models.Element
 import com.nexsabre.hardwarereservationtool.models.Machine
 import com.nexsabre.hardwarereservationtool.models.Machines
-import com.nexsabre.hardwarereservationtool.toElement
+import com.nexsabre.hardwarereservationtool.models.toElement
+import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.boot.test.context.SpringBootTest
-
-import org.jetbrains.exposed.exceptions.ExposedSQLException as ExposedSQLException
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

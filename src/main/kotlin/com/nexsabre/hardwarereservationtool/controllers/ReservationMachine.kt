@@ -1,6 +1,6 @@
 package com.nexsabre.hardwarereservationtool.controllers
 
-import com.nexsabre.hardwarereservationtool.api.v1.Element
+import com.nexsabre.hardwarereservationtool.models.Element
 import com.nexsabre.hardwarereservationtool.models.Machine
 import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.transactions.transaction
