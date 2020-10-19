@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 data class AddMachine(val name: String, val address: String)
-data class DeleteMachine(val name: String, val address: String)
 
 @RestController
 @RequestMapping("/api/v1/machines")
@@ -25,6 +24,12 @@ class Machines {
             true -> ResponseEntity(HttpStatus.CREATED)
             false -> ResponseEntity(HttpStatus.CONFLICT)
         }
+    }
+
+    @GetMapping("/{machineId}")
+    fun getSpecificMachine(@PathVariable machineId: Int): ResponseEntity<Element?> {
+        val specificMachine = ReservationMachine().get(machineId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        return ResponseEntity.ok().body(specificMachine)
     }
 
     @GetMapping("/{machineId}/delete")
