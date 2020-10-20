@@ -15,7 +15,6 @@ fun allMachines(): List<Element> {
 
 
 class ReservationMachine {
-
     fun create(name: String, address: String, start: DateTime?, ends: DateTime?): Boolean {
         try {
             return transaction {

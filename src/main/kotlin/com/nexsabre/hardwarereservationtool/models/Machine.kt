@@ -6,8 +6,6 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.jodatime.datetime
 
-
-
 object Machines : IntIdTable() {
     val name = varchar("name", 50).index().uniqueIndex("name")
     val address = varchar("address", 20).uniqueIndex("address")
