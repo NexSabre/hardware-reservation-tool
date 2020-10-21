@@ -87,7 +87,13 @@
 			<artifactId>kotlinx-serialization-json</artifactId>
 			<version>${serialization.version}</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.danilopianini</groupId>
+            <artifactId>khttp</artifactId>
+            <version>0.1.0-dev1u+b23a8f7</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
