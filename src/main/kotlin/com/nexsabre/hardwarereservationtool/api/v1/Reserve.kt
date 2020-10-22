@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*
 
 data class ReservationRequest(val id: Int, val start: Any?, val duration: Number)
 
-data class Message(val message: String)
 
 @RestController
 @RequestMapping("/api/v1")
