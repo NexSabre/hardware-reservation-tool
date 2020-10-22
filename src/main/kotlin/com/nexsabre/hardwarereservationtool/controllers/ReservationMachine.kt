@@ -15,6 +15,12 @@ fun allMachines(): List<Element> {
 
 
 class ReservationMachine {
+    fun all(): List<Element> {
+        return transaction {
+            return@transaction Machine.all().map { it.toElement() }
+        }
+    }
+
     fun create(name: String, address: String, start: DateTime?, ends: DateTime?): Boolean {
         try {
             return transaction {

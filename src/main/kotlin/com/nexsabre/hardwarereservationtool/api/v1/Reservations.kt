@@ -1,10 +1,11 @@
 package com.nexsabre.hardwarereservationtool.api.v1
 
+import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
 import com.nexsabre.hardwarereservationtool.models.Element
-import com.nexsabre.hardwarereservationtool.models.Machine
-import com.nexsabre.hardwarereservationtool.models.toElement
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -14,12 +15,17 @@ import org.springframework.web.bind.annotation.RestController
 class Reservations {
 
     @GetMapping
+    fun reservation(@PathVariable machineId: Int): ResponseEntity<Element> {
+        return when(val machine: Element? = ReservationMachine().get(machineId)){
+            null -> ResponseEntity.noContent().build()
+            else -> ResponseEntity.ok().body(machine)
+        }
+    }
+
+    @GetMapping
     fun reservations(): List<Element> {
         return transaction {
-            val allMachines = Machine.all().map {
-                it.toElement()
-            }
-            allMachines
+            ReservationMachine().all()
         }
     }
 }
