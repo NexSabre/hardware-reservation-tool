@@ -13,21 +13,21 @@ import org.springframework.boot.runApplication
 open class HardwareReservationToolApplication
 
 fun main(args: Array<String>) {
-	database()
-	runApplication<HardwareReservationToolApplication>(*args)
+    database()
+    runApplication<HardwareReservationToolApplication>(*args)
 }
 
 fun database() {
-	Database.connect("jdbc:sqlite:sqlite.test.db", driver = "org.sqlite.JDBC")
+    Database.connect("jdbc:sqlite:sqlite.test.db", driver = "org.sqlite.JDBC")
 
-	try {
-		transaction {
-			SchemaUtils.create(Machines)
+    try {
+        transaction {
+            SchemaUtils.create(Machines)
 
-			Machine.new {
-				name = "Example Machine"
-				address = "0.0.0.0"
-			}
-		}
-	} catch (e: ExposedSQLException) {}
+            Machine.new {
+                name = "Example Machine"
+                address = "0.0.0.0"
+            }
+        }
+    } catch (e: ExposedSQLException) {}
 }
