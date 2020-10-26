@@ -9,10 +9,25 @@ In the mind of the creators, the tool is only a table informing the "burnout pro
 Here is a simple list of available points:
 
 ### GET api/v1/reservations
-Return a list of all available machines for reservation with theirs status
+Return a list of all available machines for reservation with theirs status (unavailable machines excluded)
 
 ### GET api/v1/reserve/{machineId}
 Return an entity of the specific machine with Id
 
 ### POST api/v1/reserve/{machineId}
 Payload: TBD
+
+### GET api/v1/reserve/{machineId}/release
+Release a reserved machine
+
+### GET api/v1/machines
+Return a list of all machines
+
+### POST api/v1/machines
+Add a new machine to the list
+
+### GET api/v1/machines/{machineId}
+Detailed information about machines
+
+### GET api/v1/machines/{machineId}/delete
+Delete a machine
