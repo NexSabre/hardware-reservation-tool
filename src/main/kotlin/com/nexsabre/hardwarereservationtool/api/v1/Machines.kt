@@ -4,6 +4,7 @@ import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
 import com.nexsabre.hardwarereservationtool.controllers.allMachines
 import com.nexsabre.hardwarereservationtool.models.Element
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType.*
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -17,7 +18,8 @@ class Machines {
         return allMachines()
     }
 
-    @PostMapping
+//    @PostMapping
+    @RequestMapping(method = [RequestMethod.POST], consumes = ["application/json"])
     fun postAddMachine(@RequestBody machine: AddMachine): ResponseEntity<String> {
         return when(ReservationMachine()
                 .create(name = machine.name, address = machine.address, null, null)) {
