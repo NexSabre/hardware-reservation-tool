@@ -13,7 +13,7 @@ def get_all_machines():
 
 def add_example_machine():
     r = requests.post(c.api_v1("/machines"), json={
-        "name": f"Test Machine {random.randrange(2048)}",
+        "name": c.random_name(),
         "address": c.random_ip()
     })
     assert r.status_code == 201, "Return code should be Created"
