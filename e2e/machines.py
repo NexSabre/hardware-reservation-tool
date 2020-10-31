@@ -15,10 +15,20 @@ def add_example_machine():
         "address": c.random_ip()
     })
     assert r.status_code == 201, "Return code should be Created"
+    try:
+        return json.loads(r.content)
+    except Exception as e:
+        print(e)
+        return {}
 
 
-def count_machines():
+def count_machines() -> int:
     return len(get_all_machines())
+
+
+def remove_specific_machine(id):
+    r = requests.get(c.api_v1(f"/machines/{id}/delete"))
+    return True if r.status_code == 204 else False
 
 
 def remove_all_machines():

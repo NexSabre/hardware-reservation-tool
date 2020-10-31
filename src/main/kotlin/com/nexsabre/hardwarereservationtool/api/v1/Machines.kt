@@ -3,10 +3,12 @@ package com.nexsabre.hardwarereservationtool.api.v1
 import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
 import com.nexsabre.hardwarereservationtool.controllers.allMachines
 import com.nexsabre.hardwarereservationtool.models.Element
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType.*
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.net.URI
 
 data class AddMachine(val name: String, val address: String)
 
@@ -18,12 +20,11 @@ class Machines {
         return allMachines()
     }
 
-//    @PostMapping
     @RequestMapping(method = [RequestMethod.POST], consumes = ["application/json"])
     fun postAddMachine(@RequestBody machine: AddMachine): ResponseEntity<String> {
-        return when(ReservationMachine()
-                .create(name = machine.name, address = machine.address, null, null)) {
-            true -> ResponseEntity(HttpStatus.CREATED)
+        val status = ReservationMachine().create(name = machine.name, address = machine.address, null, null)
+        return when (status.first) {
+            true -> ResponseEntity.created(URI("${status.second.id}")).body(Json.encodeToString(status.second))
             false -> ResponseEntity(HttpStatus.CONFLICT)
         }
     }
