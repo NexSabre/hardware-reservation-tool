@@ -3,7 +3,7 @@ import random
 
 import requests
 
-import e2e.configuration as c
+import configuration as c
 
 
 def get_all_machines():
@@ -19,5 +19,5 @@ def add_example_machine():
     assert r.status_code == 201, "Return code should be Created"
 
 
-def count_machines(self):
+def count_machines():
     return len(get_all_machines())
