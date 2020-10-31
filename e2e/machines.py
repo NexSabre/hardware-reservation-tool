@@ -1,6 +1,4 @@
 import json
-import random
-
 import requests
 
 import configuration as c
@@ -21,3 +19,12 @@ def add_example_machine():
 
 def count_machines():
     return len(get_all_machines())
+
+
+def remove_all_machines():
+    all_machines = get_all_machines()
+    for machine in all_machines:
+        r = requests.get(c.api_v1(f"/machines/{machine['id']}/delete"))
+        assert r.status_code == 204, "Should return No Content"
+
+    assert count_machines() == 0, "All machines should be removed"
