@@ -21,9 +21,11 @@ class ReservationMachine {
         }
     }
 
-    fun create(name: String, address: String, start: DateTime?, ends: DateTime?): Boolean {
+    fun create(name: String, address: String, start: DateTime?, ends: DateTime?): Pair<Boolean, Element> {
+        val machinesBefore = all()
+        var status: Boolean = false
         try {
-            return transaction {
+            status = transaction {
                 val machinesBeforeNewOne = Machine.all().map { it.toElement() }.size
                 Machine.new {
                     this.name = name
@@ -37,8 +39,10 @@ class ReservationMachine {
             }
         } catch (e: ExposedSQLException) {
             println("Cannot create a new Machine($name, $address, $start, $ends)")
-            return false
+            status = false
         }
+        val newMachine = (all() - machinesBefore).first()
+        return Pair(status, newMachine)
     }
 
     fun create(machines: List<Element>) {
