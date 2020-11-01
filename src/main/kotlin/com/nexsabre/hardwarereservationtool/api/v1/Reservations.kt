@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/reservations")
 class Reservations {
 
-    @GetMapping("/{machinedId}")
+    @GetMapping("/{machineId}")
     fun reservation(@PathVariable machineId: Int): ResponseEntity<Element> {
         return when(val machine: Element? = ReservationMachine().get(machineId)){
             null -> ResponseEntity.noContent().build()

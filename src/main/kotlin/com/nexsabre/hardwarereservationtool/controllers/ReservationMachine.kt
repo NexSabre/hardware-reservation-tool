@@ -79,7 +79,6 @@ class ReservationMachine {
         return null
     }
 
-
     fun getAvailable(): List<Element> = allMachines().filter { it.start == null}
 
     fun isAvailable(machineId: Int): Boolean {
