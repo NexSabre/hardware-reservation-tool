@@ -19,3 +19,10 @@ class TestReserve(unittest.TestCase):
         r = reserve.post_reservation(self.example_machine["id"])
         assert r, ""
         assert reserve.is_reserved(self.example_machine["id"])
+        
+    def test_negative_add_wrong_id_during_reservation(self):
+        example_id = self.example_machine["id"]
+        wrong_example_id = self.example_machine["id"] + 1 
+        
+        reserve.post_reservation(example_id, kwargs={"id": wrong_example_id})
+        self.assertFalse(reserve.is_reserved(example_id), "Should not reserve machine, during reserve process wrong id was provided")
