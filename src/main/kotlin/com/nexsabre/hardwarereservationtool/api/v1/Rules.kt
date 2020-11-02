@@ -2,7 +2,7 @@ package com.nexsabre.hardwarereservationtool.api.v1
 
 import com.nexsabre.hardwarereservationtool.configuration.Config
 import com.nexsabre.hardwarereservationtool.configuration.Configuration
-//import com.nexsabre.hardwarereservationtool.configuration.RulesConfig
+import com.sksamuel.hoplite.Masked
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/rules")
 class Rules {
-    // This endpoint should return information about all rules which restrict
-    // user to reserve wrong machine
-    private val config = Configuration()
+    private var config = Configuration().all()
 
     @GetMapping
     fun rules(): Config {
-        return config.all()
+        config.mask()
+        return config
     }
+}
+
+fun Config.mask() {
+    this.rules.password = Masked("******")
 }

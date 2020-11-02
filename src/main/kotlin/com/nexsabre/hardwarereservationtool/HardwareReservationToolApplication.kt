@@ -1,6 +1,6 @@
 package com.nexsabre.hardwarereservationtool
 
-//import com.nexsabre.hardwarereservationtool.configuration.RulesConfig
+import com.nexsabre.hardwarereservationtool.configuration.Configuration
 import com.nexsabre.hardwarereservationtool.models.Machines
 import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.Database
@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-//@EnableConfigurationProperties(RulesConfig::class)
 open class HardwareReservationToolApplication
 
 fun main(args: Array<String>) {
@@ -19,11 +18,13 @@ fun main(args: Array<String>) {
 }
 
 fun database() {
-    Database.connect("jdbc:sqlite:sqlite.test.db", driver = "org.sqlite.JDBC")
+    val dbConfig = Configuration().database()
+    Database.connect(url = dbConfig.url, driver = dbConfig.driver)
 
     try {
         transaction {
             SchemaUtils.create(Machines)
         }
-    } catch (e: ExposedSQLException) {}
+    } catch (e: ExposedSQLException) {
+    }
 }
