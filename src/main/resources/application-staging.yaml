@@ -1,0 +1,10 @@
+env: staging
+
+server:
+  port: 8080
+  redirectUrl: /404.html
+
+rules:
+  reserveOnlyWithKey: false
+  overwriteWithKey: true
+  password: 1q2w3e4r5t

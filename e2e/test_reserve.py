@@ -1,8 +1,8 @@
 import unittest
 
 import machines
-import reservations
 import reserve
+
 
 class TestReserve(unittest.TestCase):
     def setUp(self) -> None:
