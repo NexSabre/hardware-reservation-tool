@@ -4,8 +4,22 @@ import requests
 import configuration as c
 
 
+def _change_enabled(machine_id, status):
+    status = "enable" if status else "disable"
+    r = requests.get(c.api_v1(f"/machines/{machine_id}/{status}"))
+    return True if r.status_code == 200 else False
+
+
+def enable(machine_id):
+    return _change_enabled(machine_id, True)
+
+
+def disable(machine_id):
+    return _change_enabled(machine_id, False)
+
+
 def get_machine(machine_id):
-    r = requests.get(c.api_v1(f"/api/v1/machine/{machine_id}"))
+    r = requests.get(c.api_v1(f"/machines/{machine_id}"))
     try:
         return json.loads(r.content)
     except Exception as e:
