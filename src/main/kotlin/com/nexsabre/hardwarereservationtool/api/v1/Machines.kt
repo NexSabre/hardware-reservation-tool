@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI
 
-data class AddMachine(val name: String, val address: String)
+data class AddMachine(val name: String, val address: String, val enabled: Boolean = true)
 
 @RestController
 @RequestMapping("/api/v1/machines")
@@ -37,9 +37,25 @@ class Machines {
 
     @GetMapping("/{machineId}/delete")
     fun deleteMachine(@PathVariable machineId: Int): ResponseEntity<String> {
-        return when(ReservationMachine().delete(machineId)) {
+        return when (ReservationMachine().delete(machineId)) {
             true -> ResponseEntity(HttpStatus.NO_CONTENT)
             false -> ResponseEntity(HttpStatus.OK)
+        }
+    }
+
+    @GetMapping("/{machineId}/enable")
+    fun enableMachine(@PathVariable machineId: Int): ResponseEntity<String> {
+        return when (ReservationMachine().enable(machineId)) {
+            true -> ResponseEntity(HttpStatus.OK)
+            false -> ResponseEntity(HttpStatus.CONFLICT)
+        }
+    }
+
+    @GetMapping("/{machineId}/disable")
+    fun disableMachine(@PathVariable machineId: Int): ResponseEntity<String> {
+        return when (ReservationMachine().disable(machineId)) {
+            true -> ResponseEntity(HttpStatus.OK)
+            false -> ResponseEntity(HttpStatus.CONFLICT)
         }
     }
 }

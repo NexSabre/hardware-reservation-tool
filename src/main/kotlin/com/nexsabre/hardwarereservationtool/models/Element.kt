@@ -11,12 +11,16 @@ data class Element(val id: Int? = null,
                    @Contextual
                    val start: DateTime? = null,
                    @Contextual
-                   val ends: DateTime? = null)
+                   val ends: DateTime? = null,
+                   @Contextual
+                   val enabled: Boolean = true
+)
 
 fun Machine.toElement() = Element(
         id = id.value,
         name = name,
         address = address,
         start = reservationStart,
-        ends = reservationEnds
+        ends = reservationEnds,
+        enabled = enabled
 )
