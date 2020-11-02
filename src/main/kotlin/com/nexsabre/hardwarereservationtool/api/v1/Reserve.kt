@@ -25,8 +25,8 @@ class Reserve {
         }
     }
 
-    @PostMapping("/reserve/{machineId}")
-    fun postReserveMachine(@PathVariable machineId: Int, @RequestBody requestBody: ReservationRequest): ResponseEntity<Unit> {
+    @PostMapping("/reserve/{machineId}", consumes = ["application/json"])
+    fun postReserveMachine(@PathVariable machineId: Int, @RequestBody requestsBody: ReservationRequest): ResponseEntity<Unit> {
         return when (ReservationMachine().reserve(machineId)) {
             true -> ResponseEntity.ok().build()
             false -> ResponseEntity.notFound().build()
