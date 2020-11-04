@@ -88,6 +88,32 @@ class ReservationMachine {
         }
     }
 
+    fun protect(machineId: Int) = changeProtected(machineId, state = true)
+
+    fun unprotect(machineId: Int) = changeProtected(machineId, state = false)
+
+    private fun changeProtected(machineId: Int, state: Boolean): Boolean {
+        try {
+            return transaction {
+                val machineToProtect = Machine.findById(machineId)
+                if (machineToProtect != null) {
+                    machineToProtect.protected = state
+                    return@transaction true
+                }
+                return@transaction false
+            }
+        } catch (e: ExposedSQLException) {
+            println("Can not change 'proteted' field: Machine(id: $machineId, state: $state)")
+            return false
+        }
+    }
+
+
+    fun protected(machineId: Int): Boolean? {
+        val machine = get(machineId)
+        return machine?.protected
+    }
+
     fun get(machineId: Int): Element? {
         try {
             return transaction {
