@@ -27,6 +27,7 @@ class Reserve {
 
     @PostMapping("/reserve/{machineId}", consumes = ["application/json"])
     fun postReserveMachine(@PathVariable machineId: Int, @RequestBody requestsBody: ReservationRequest): ResponseEntity<Unit> {
+        // TODO implement a time, after the machine will be free
         return when (ReservationMachine().reserve(machineId)) {
             true -> ResponseEntity.ok().build()
             false -> ResponseEntity.notFound().build()
