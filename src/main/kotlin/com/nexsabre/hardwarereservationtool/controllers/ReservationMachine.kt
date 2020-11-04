@@ -21,7 +21,7 @@ class ReservationMachine {
         }
     }
 
-    fun create(name: String, address: String, start: DateTime?, ends: DateTime?): Pair<Boolean, Element> {
+    fun create(name: String, address: String, start: DateTime?, ends: DateTime?, enabled: Boolean = true): Pair<Boolean, Element> {
         val machinesBefore = all()
         var status: Boolean = false
         try {
@@ -32,6 +32,7 @@ class ReservationMachine {
                     this.address = address
                     this.reservationStart = start
                     this.reservationEnds = ends
+                    this.enabled = enabled
                 }
 
                 val machinesAfterAddingNewOne = Machine.all().map { it.toElement() }.size
@@ -47,7 +48,7 @@ class ReservationMachine {
 
     fun create(machines: List<Element>) {
         for (machine in machines) {
-            create(machine.name!!, machine.address!!, machine.start, machine.ends)
+            create(machine.name!!, machine.address!!, machine.start, machine.ends, machine.enabled)
         }
     }
 
@@ -61,8 +62,28 @@ class ReservationMachine {
                 val machinesAfterAddingNewOne = Machine.all().map { it.toElement() }.size
                 return@transaction machinesAfterAddingNewOne != machinesBeforeNewOne
             }
-        } catch(e: ExposedSQLException) {
+        } catch (e: ExposedSQLException) {
             println("Can not remove machine id: $machineId")
+            return false
+        }
+    }
+
+    fun enable(machineId: Int) = changeEnabled(machineId, status = true)
+
+    fun disable(machineId: Int) = changeEnabled(machineId, status = false)
+
+    private fun changeEnabled(machineId: Int, status: Boolean): Boolean {
+        try {
+            return transaction {
+                val machineToEnable = Machine.findById(machineId)
+                if (machineToEnable != null) {
+                    machineToEnable.enabled = status
+                    return@transaction true
+                }
+                return@transaction false
+            }
+        } catch (e: ExposedSQLException) {
+            println("Can not change 'enabled' field: Machine(id: $machineId, status: $status)")
             return false
         }
     }
@@ -81,7 +102,7 @@ class ReservationMachine {
 
     fun getAvailable(): List<Element> = allMachines().filter { it.start == null}
 
-    fun isAvailable(machineId: Int): Boolean {
+    private fun isAvailable(machineId: Int): Boolean {
         val machine = this.get(machineId) ?: return false
         if (machine.start != null) {
             return false

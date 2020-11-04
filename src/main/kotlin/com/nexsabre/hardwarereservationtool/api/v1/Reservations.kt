@@ -25,7 +25,9 @@ class Reservations {
     @GetMapping
     fun reservations(): List<Element> {
         return transaction {
-            ReservationMachine().all()
+            ReservationMachine().all().filter {
+                it.enabled
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ object Machines : IntIdTable() {
     val address = varchar("address", 20).uniqueIndex("address")
     val reservationStart = datetime("reservation_start").nullable()
     val reservationEnds = datetime("reservation_ends").nullable()
+    val enabled = bool("enabled").default(true)
 }
 
 class Machine(id: EntityID<Int>) : IntEntity(id) {
@@ -20,5 +21,6 @@ class Machine(id: EntityID<Int>) : IntEntity(id) {
     var address by Machines.address
     var reservationStart by Machines.reservationStart
     var reservationEnds by Machines.reservationEnds
+    var enabled by Machines.enabled
 }
 
