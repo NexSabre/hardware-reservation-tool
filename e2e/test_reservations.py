@@ -23,13 +23,50 @@ class TestReservations(unittest.TestCase):
         r = reservations.get_specific_reservation(self.example_machine["id"])
         assert r, "Should return at information about specific reservation"
 
-    def test_negative_try_reserve_protected_machine_wo_password(self):
-        r = reservations.get_specific_reservation(self.example_machine["id"])
-
+    def test_negative_try_reserve_protected_machine_w_password(self):
         self.assertTrue(machines.protect(self.example_machine["id"],
                                          password=load_spring_configuration().get("rules").get("password")),
                         "Response from the service should be True")
+
+        r = reservations.get_specific_reservation(self.example_machine["id"])
+
         self.assertTrue(r["protected"], "Machine should be protected")
+
+    def test_negative_try_reserve_protected_machine_wo_password(self):
+        self.assertFalse(machines.protect(self.example_machine["id"],
+                                          password="wrongPaSwOrD*&"),
+                         "Response from the service should be False")
+
+        r = reservations.get_specific_reservation(self.example_machine["id"])
+
+        self.assertFalse(r["protected"], "Machine should be unprotected")
+
+    def test_turn_on_protection_and_try_disable_with_wrong_password(self):
+        self.assertTrue(machines.protect(self.example_machine["id"],
+                                         password=load_spring_configuration().get("rules").get("password")),
+                        "Response from the service should be True")
+
+        r = reservations.get_specific_reservation(self.example_machine["id"])
+
+        self.assertTrue(r["protected"], "Machine should be protected")
+        self.assertFalse(machines.protect(self.example_machine["id"],
+                                          password="wrongPaSwOrD*&"),
+                         "Response from the service should be False")
+        self.assertTrue(r["protected"], "Machine should be protected")
+
+    def test_turn_on_protection_and_try_disable_w_password(self):
+        self.assertTrue(machines.protect(self.example_machine["id"],
+                                         password=load_spring_configuration().get("rules").get("password")),
+                        "Response from the service should be True")
+
+        r = reservations.get_specific_reservation(self.example_machine["id"])
+        self.assertTrue(r["protected"], "Machine should be protected")
+        self.assertTrue(machines.unprotect(self.example_machine["id"],
+                                           password=load_spring_configuration().get("rules").get("password")),
+                        "Response from the service should be True")
+
+        r = reservations.get_specific_reservation(self.example_machine["id"])
+        self.assertFalse(r["protected"], "Machine should be protected")
 
     def tearDown(self) -> None:
         machines.remove_all_machines()
