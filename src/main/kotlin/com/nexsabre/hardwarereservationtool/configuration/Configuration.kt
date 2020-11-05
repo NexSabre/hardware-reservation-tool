@@ -25,4 +25,10 @@ class Configuration {
     fun all() = ConfigLoader().loadConfigOrThrow<Config>(this.configurationPath)
 
     fun database() = all().database
+
+    fun checkPassword(passwordToCheck: String): Boolean {
+        return all().rules.password.value == passwordToCheck
+    }
+
 }
+

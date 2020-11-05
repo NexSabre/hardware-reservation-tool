@@ -12,6 +12,7 @@ object Machines : IntIdTable() {
     val reservationStart = datetime("reservation_start").nullable()
     val reservationEnds = datetime("reservation_ends").nullable()
     val enabled = bool("enabled").default(true)
+    val protected = bool("protected").default(false)
 }
 
 class Machine(id: EntityID<Int>) : IntEntity(id) {
@@ -22,5 +23,6 @@ class Machine(id: EntityID<Int>) : IntEntity(id) {
     var reservationStart by Machines.reservationStart
     var reservationEnds by Machines.reservationEnds
     var enabled by Machines.enabled
+    var protected by Machines.protected
 }
 

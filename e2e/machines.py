@@ -4,6 +4,20 @@ import requests
 import configuration as c
 
 
+def _change_protected(machine_id: int, password, state: bool) -> bool:
+    state = "protect" if state else "unprotect"
+    r = requests.post(c.api_v1(f"/machines/{machine_id}/{state}"), json={"password": password})
+    return True if r.status_code == 200 else False
+
+
+def protect(machine_id: int, password: str) -> bool:
+    return _change_protected(machine_id, password, True)
+
+
+def unprotect(machine_id: int, password: str) -> bool:
+    return _change_protected(machine_id, password, False)
+
+
 def _change_enabled(machine_id, status):
     status = "enable" if status else "disable"
     r = requests.get(c.api_v1(f"/machines/{machine_id}/{status}"))
