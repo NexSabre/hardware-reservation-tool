@@ -1,7 +1,7 @@
-package com.nexsabre.hardwarereservationtool
+package com.nexsabre.hardwarereservationtool.server
 
-import com.nexsabre.hardwarereservationtool.configuration.Configuration
-import com.nexsabre.hardwarereservationtool.models.Machines
+import com.nexsabre.hardwarereservationtool.server.configuration.Configuration
+import com.nexsabre.hardwarereservationtool.server.models.Machines
 import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils

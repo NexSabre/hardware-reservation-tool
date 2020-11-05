@@ -1,4 +1,4 @@
-package com.nexsabre.hardwarereservationtool.models
+package com.nexsabre.hardwarereservationtool.server.models
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable

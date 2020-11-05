@@ -1,4 +1,4 @@
-package com.nexsabre.hardwarereservationtool.models
+package com.nexsabre.hardwarereservationtool.server.models
 
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass

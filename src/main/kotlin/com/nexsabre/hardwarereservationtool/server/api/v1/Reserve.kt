@@ -1,10 +1,10 @@
-package com.nexsabre.hardwarereservationtool.api.v1
+package com.nexsabre.hardwarereservationtool.server.api.v1
 
-import com.nexsabre.hardwarereservationtool.configuration.Configuration
-import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
-import com.nexsabre.hardwarereservationtool.models.Element
-import com.nexsabre.hardwarereservationtool.models.Machine
-import com.nexsabre.hardwarereservationtool.models.toElement
+import com.nexsabre.hardwarereservationtool.server.configuration.Configuration
+import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachine
+import com.nexsabre.hardwarereservationtool.server.models.Element
+import com.nexsabre.hardwarereservationtool.server.models.Machine
+import com.nexsabre.hardwarereservationtool.server.models.toElement
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

@@ -1,4 +1,4 @@
-package com.nexsabre.hardwarereservationtool.configuration
+package com.nexsabre.hardwarereservationtool.server.configuration
 
 import com.sksamuel.hoplite.ConfigLoader
 import com.sksamuel.hoplite.Masked

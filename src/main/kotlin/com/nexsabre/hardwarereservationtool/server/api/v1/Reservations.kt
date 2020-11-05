@@ -1,7 +1,7 @@
-package com.nexsabre.hardwarereservationtool.api.v1
+package com.nexsabre.hardwarereservationtool.server.api.v1
 
-import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
-import com.nexsabre.hardwarereservationtool.models.Element
+import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachine
+import com.nexsabre.hardwarereservationtool.server.models.Element
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping

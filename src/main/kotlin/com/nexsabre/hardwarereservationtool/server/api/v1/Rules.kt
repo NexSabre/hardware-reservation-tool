@@ -1,7 +1,7 @@
-package com.nexsabre.hardwarereservationtool.api.v1
+package com.nexsabre.hardwarereservationtool.server.api.v1
 
-import com.nexsabre.hardwarereservationtool.configuration.Config
-import com.nexsabre.hardwarereservationtool.configuration.Configuration
+import com.nexsabre.hardwarereservationtool.server.configuration.Config
+import com.nexsabre.hardwarereservationtool.server.configuration.Configuration
 import com.sksamuel.hoplite.Masked
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

@@ -1,6 +1,6 @@
 package end2end
 
-import com.nexsabre.hardwarereservationtool.models.Element
+import com.nexsabre.hardwarereservationtool.server.models.Element
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import makeGetRequest
