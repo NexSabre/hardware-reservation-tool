@@ -14,3 +14,14 @@ class Info : CliktCommand() {
 fun main(array: Array<String>) {
     Info().main(array)
 }
+
+//* main
+//        * info
+//        * configuration
+//            --set-server
+//            --set-password [optional]
+//        * machine
+//            --protect
+//            --unprotect
+//            --enable
+//            --disable

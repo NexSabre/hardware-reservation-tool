@@ -1,9 +1,12 @@
 package com.nexsabre.hardwarereservationtool.cmd.models
 
-class Endpoints() {
-    val info = "${baseBuilder()}/api/v1/info"
+import com.nexsabre.hardwarereservationtool.cmd.data.ApiVersion
 
-    private fun baseBuilder(base: String = "http://localhost:8080"): String {
+
+class Endpoints(apiVersion: ApiVersion = ApiVersion.API_V1) {
+    val info = "${baseBuilder()}${apiVersion.endpoint}info"
+
+    private fun baseBuilder(base: String = "http://localhost:8080/"): String {
         return base
     }
 }
