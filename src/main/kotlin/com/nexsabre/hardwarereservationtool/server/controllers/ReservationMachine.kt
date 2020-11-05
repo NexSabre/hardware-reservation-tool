@@ -1,8 +1,8 @@
-package com.nexsabre.hardwarereservationtool.controllers
+package com.nexsabre.hardwarereservationtool.server.controllers
 
-import com.nexsabre.hardwarereservationtool.models.Element
-import com.nexsabre.hardwarereservationtool.models.Machine
-import com.nexsabre.hardwarereservationtool.models.toElement
+import com.nexsabre.hardwarereservationtool.server.models.Element
+import com.nexsabre.hardwarereservationtool.server.models.Machine
+import com.nexsabre.hardwarereservationtool.server.models.toElement
 import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime

@@ -1,8 +1,8 @@
-import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
-import com.nexsabre.hardwarereservationtool.models.Element
-import com.nexsabre.hardwarereservationtool.models.Machine
-import com.nexsabre.hardwarereservationtool.models.Machines
-import com.nexsabre.hardwarereservationtool.models.toElement
+import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachine
+import com.nexsabre.hardwarereservationtool.server.models.Element
+import com.nexsabre.hardwarereservationtool.server.models.Machine
+import com.nexsabre.hardwarereservationtool.server.models.Machines
+import com.nexsabre.hardwarereservationtool.server.models.toElement
 import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils

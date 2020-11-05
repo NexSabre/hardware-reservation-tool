@@ -1,4 +1,4 @@
-package com.nexsabre.hardwarereservationtool.api.v1
+package com.nexsabre.hardwarereservationtool.server.api.v1
 
 import BaseTest
 import org.assertj.core.api.Assertions.assertThat

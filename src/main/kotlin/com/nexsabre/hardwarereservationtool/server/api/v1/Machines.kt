@@ -1,9 +1,9 @@
-package com.nexsabre.hardwarereservationtool.api.v1
+package com.nexsabre.hardwarereservationtool.server.api.v1
 
-import com.nexsabre.hardwarereservationtool.configuration.Configuration
-import com.nexsabre.hardwarereservationtool.controllers.ReservationMachine
-import com.nexsabre.hardwarereservationtool.controllers.allMachines
-import com.nexsabre.hardwarereservationtool.models.Element
+import com.nexsabre.hardwarereservationtool.server.configuration.Configuration
+import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachine
+import com.nexsabre.hardwarereservationtool.server.controllers.allMachines
+import com.nexsabre.hardwarereservationtool.server.models.Element
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.springframework.http.HttpStatus
