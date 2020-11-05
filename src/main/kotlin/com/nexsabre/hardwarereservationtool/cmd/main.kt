@@ -1,6 +1,7 @@
 package com.nexsabre.hardwarereservationtool.cmd
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.nexsabre.hardwarereservationtool.cmd.models.Hart
 
 
 class Info : CliktCommand() {

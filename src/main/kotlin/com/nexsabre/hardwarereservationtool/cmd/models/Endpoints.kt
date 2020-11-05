@@ -1,4 +1,4 @@
-package com.nexsabre.hardwarereservationtool.cmd
+package com.nexsabre.hardwarereservationtool.cmd.models
 
 class Endpoints() {
     val info = "${baseBuilder()}/api/v1/info"
