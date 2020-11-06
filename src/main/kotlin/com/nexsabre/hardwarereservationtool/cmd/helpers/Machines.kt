@@ -27,17 +27,20 @@ fun getAllMachines(): List<Element>? {
 }
 
 fun List<Element>?.prettyPrint() {
-    if (this == null) {
+    if (this == null || this.isEmpty()) {
         println("0. \t Nothing to display")
-    }
-    this!!.forEachIndexed { index, element ->
-        println("${index + 1}. $element")
+
+    } else {
+        this.forEachIndexed { index, element ->
+            println("${index + 1}. $element")
+        }
     }
 }
 
 fun Element?.prettyPrint() {
     if (this == null) {
         println("0. \t Nothing to display")
+    } else {
+        println("1. \t $this")
     }
-    println("1. \t $this")
 }

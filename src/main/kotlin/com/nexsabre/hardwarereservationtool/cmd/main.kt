@@ -13,6 +13,7 @@ import com.nexsabre.hardwarereservationtool.cmd.helpers.getAllMachines
 import com.nexsabre.hardwarereservationtool.cmd.helpers.getMachineById
 import com.nexsabre.hardwarereservationtool.cmd.helpers.prettyPrint
 import com.nexsabre.hardwarereservationtool.cmd.models.Hart
+import kotlin.system.exitProcess
 
 
 class HartCmd : CliktCommand() {
@@ -38,10 +39,6 @@ class Machines : CliktCommand() {
             "--disable" to 0
     ).default(-1)
 
-    override fun getFormattedHelp(): String {
-        return "asdasdasdasd"
-    }
-
     override fun run() {
         if (chooseProtect == -1 && chooseEnable == -1) {
             showMachines(id)
@@ -57,17 +54,18 @@ class Machines : CliktCommand() {
 fun showMachines(id: Int) {
     if (id < 0) {
         getAllMachines().prettyPrint()
-        System.out.close()
+        exitProcess(0)
     }
     val check = checkMachineExistsById(id)
     if (!check) {
         println("Machine $id does not exist. Please provide a proper machine id.")
-        System.out.close()
+        exitProcess(0)
     }
     getMachineById(id).prettyPrint()
 }
 
 fun main(array: Array<String>) {
+    checkServiceIsAlive()
     HartCmd()
             .subcommands(
                     Info(),
@@ -76,6 +74,11 @@ fun main(array: Array<String>) {
             .main(array)
 }
 
+fun checkServiceIsAlive() {
+    if (!Hart().isAlive()) {
+        println("Service is not available or cmd's app can not connect to it.")
+    }
+}
 
 //* main
 //        * info
