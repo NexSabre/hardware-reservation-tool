@@ -7,6 +7,8 @@ from reservations import count_reservations
 class TestMachines(unittest.TestCase):
     def setUp(self) -> None:
         self.test_machine = add_and_verifies_new_machine()
+        for i in range(10):
+            add_and_verifies_new_machine()
 
     def test_add_one_machine(self):
         add_and_verifies_new_machine()

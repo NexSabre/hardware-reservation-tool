@@ -12,4 +12,9 @@ class Hart {
     fun info(): String? {
         return getResultsOrNull(Endpoints().info)
     }
+
+    fun machines(): String? {
+        return getResultsOrNull(Endpoints().machines)
+    }
+
 }
