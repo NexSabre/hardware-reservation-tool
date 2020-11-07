@@ -22,6 +22,10 @@ class Hart {
         return getResultsOrNull(Endpoints().machines)
     }
 
+    fun reservations(): String? {
+        return getResultsOrNull(Endpoints().reservations)
+    }
+
     fun isAlive(): Boolean {
         if (this.getStatusCode(Endpoints().info) != 200) {
             return false
