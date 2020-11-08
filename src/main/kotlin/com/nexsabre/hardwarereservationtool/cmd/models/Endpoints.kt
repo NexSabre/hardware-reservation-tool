@@ -4,6 +4,7 @@ import com.nexsabre.hardwarereservationtool.cmd.data.ApiVersion
 
 
 class Endpoints(private val apiVersion: ApiVersion = ApiVersion.API_V1) {
+    val health = uriBuilder("health")
     val info = uriBuilder("info")
     val machines = uriBuilder("machines")
     val reserve = uriBuilder("reserve")
