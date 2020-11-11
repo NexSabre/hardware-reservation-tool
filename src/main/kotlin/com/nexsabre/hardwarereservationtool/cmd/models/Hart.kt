@@ -46,6 +46,10 @@ class Hart {
         return getResultsOrNull(Endpoints().info)
     }
 
+    fun machine(machineId: Int): String? {
+        return getResultsOrNull(Endpoints().machine(machineId))
+    }
+
     fun machines(): String? {
         return getResultsOrNull(Endpoints().machines)
     }
