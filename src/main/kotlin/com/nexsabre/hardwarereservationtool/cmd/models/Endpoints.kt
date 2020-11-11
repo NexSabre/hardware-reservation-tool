@@ -4,7 +4,6 @@ import com.nexsabre.hardwarereservationtool.cmd.data.ApiVersion
 
 
 class Endpoints(private val apiVersion: ApiVersion = ApiVersion.API_V1) {
-    val health = uriBuilder("health")
     val info = uriBuilder("info")
     val machines = uriBuilder("machines")
     val reserve = uriBuilder("reserve")
@@ -12,6 +11,8 @@ class Endpoints(private val apiVersion: ApiVersion = ApiVersion.API_V1) {
 
     fun reserveMachineId(id: Int) = uriBuilder("reserve/$id")
     fun releaseMachineId(id: Int) = uriBuilder("reserve/$id/release")
+
+    fun machine(id: Int) = uriBuilder("machines/$id")
 
     private fun baseBuilder(base: String = "http://localhost:8080/"): String {
         return base

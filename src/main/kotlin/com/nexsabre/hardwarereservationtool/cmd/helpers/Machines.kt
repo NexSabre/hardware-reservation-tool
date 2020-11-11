@@ -17,8 +17,8 @@ fun checkMachineExistsById(machineId: Int): Boolean {
 }
 
 fun getMachineById(machineId: Int): Element? {
-    val response = Hart().machines() ?: return null
-    return Json.decodeFromString<List<Element>>(response).first()
+    val response = Hart().machine(machineId) ?: return null
+    return Json.decodeFromString<Element>(response)
 }
 
 fun getAllMachines(): List<Element>? {
