@@ -10,6 +10,9 @@ class Endpoints(private val apiVersion: ApiVersion = ApiVersion.API_V1) {
     val reserve = uriBuilder("reserve")
     val reservations = uriBuilder("reservations")
 
+    fun reserveMachineId(id: Int) = uriBuilder("reserve/$id")
+    fun releaseMachineId(id: Int) = uriBuilder("reserve/$id/release")
+
     private fun baseBuilder(base: String = "http://localhost:8080/"): String {
         return base
     }
@@ -17,6 +20,8 @@ class Endpoints(private val apiVersion: ApiVersion = ApiVersion.API_V1) {
     private fun uriBuilder(endpoint: String): String {
         return "${baseBuilder()}${apiVersion.endpoint}$endpoint"
     }
+
+
 }
 
 

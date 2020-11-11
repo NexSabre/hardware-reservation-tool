@@ -23,5 +23,6 @@ fun showMachines(id: Int) {
 fun checkServiceIsAlive() {
     if (!Hart().isAlive()) {
         println("Service is not available or cmd's app can not connect to it.")
+        exitProcess(1)
     }
 }
