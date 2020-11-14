@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-data class ReservationRequest(val id: Int, val start: Any?, val duration: Number, val password: String?)
+data class ReservationRequest(val id: Int, val start: Any?, val duration: Int = 0, val password: String?)
 
 
 @RestController
@@ -29,15 +29,17 @@ class Reserve {
 
     @PostMapping("/reserve/{machineId}", consumes = ["application/json"])
     fun postReserveMachine(@PathVariable machineId: Int, @RequestBody requestsBody: ReservationRequest): ResponseEntity<Unit> {
-        // TODO implement a time, after the machine will be free
-
         if (ReservationMachine().protected(machineId) != null && ReservationMachine().protected(machineId)!!) {
             if (requestsBody.password == null || !Configuration().checkPassword(requestsBody.password)) {
                 return ResponseEntity(HttpStatus.UNAUTHORIZED)
             }
         }
+        if (machineId != requestsBody.id) {
+            return ResponseEntity.notFound().build()
+        }
 
-        return when (ReservationMachine().reserve(machineId)) {
+        val duration: Int = requestsBody.duration
+        return when (ReservationMachine().reserve(machineId, duration)) {
             true -> ResponseEntity.ok().build()
             false -> ResponseEntity.notFound().build()
         }
