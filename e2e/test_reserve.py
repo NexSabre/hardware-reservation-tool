@@ -15,6 +15,15 @@ class TestReserve(unittest.TestCase):
         is_reserved = reserve.is_reserved(self.example_machine["id"])
         self.assertTrue(is_reserved)
 
+    def test_add_reservation_for_4_hours(self):
+        reserve.post_reservation(self.example_machine["id"], duration=4)
+        is_reserved = reserve.is_reserved(self.example_machine["id"])
+        self.assertTrue(is_reserved)
+
+        reserve_response = reserve.get_reserved(self.example_machine["id"])
+        self.assertIsNotNone(reserve_response["start"])
+        self.assertIsNotNone(reserve_response["ends"])
+
     def test_release_reservation(self):
         reserve.post_reservation(self.example_machine["id"])
         is_reserved = reserve.is_reserved(self.example_machine["id"])
