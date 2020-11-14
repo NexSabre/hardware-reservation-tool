@@ -29,8 +29,6 @@ class Reserve {
 
     @PostMapping("/reserve/{machineId}", consumes = ["application/json"])
     fun postReserveMachine(@PathVariable machineId: Int, @RequestBody requestsBody: ReservationRequest): ResponseEntity<Unit> {
-        // TODO implement a time, after the machine will be free
-
         if (ReservationMachine().protected(machineId) != null && ReservationMachine().protected(machineId)!!) {
             if (requestsBody.password == null || !Configuration().checkPassword(requestsBody.password)) {
                 return ResponseEntity(HttpStatus.UNAUTHORIZED)
