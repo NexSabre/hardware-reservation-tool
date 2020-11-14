@@ -25,13 +25,17 @@ class Reserve : CliktCommand() {
 
     override fun run() {
         if (machineId == null) {
-            println("Please provide a machine id")
+            println("Missing param: Please provide a machine id")
             exitProcess(0)
         }
-        if (releaseFlag) {
-            machineId?.let { release(it) }
-        } else {
-            machineId?.let { reserve(it) }
+        if (protectFlag >= 0 && passwordInLine.isEmpty()) {
+            println("Missing param: Please provide a password")
+            exitProcess(0)
+        }
+
+        when (releaseFlag) {
+            true -> reserve(machineId!!)
+            false -> release(machineId!!)
         }
 
         when (protectFlag) {

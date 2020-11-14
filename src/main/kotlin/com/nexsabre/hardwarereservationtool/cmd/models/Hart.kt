@@ -97,7 +97,7 @@ class Hart {
 
     fun unprotect(machineId: Int, passwordInLine: String): Boolean? {
         return this.postStatusCode(
-                this.changeProtectStatus(machineId),
+                this.changeProtectStatus(machineId, protect = false),
                 Json.encodeToString(mapOf("password" to passwordInLine))
         )
     }

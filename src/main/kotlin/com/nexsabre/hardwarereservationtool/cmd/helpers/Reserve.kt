@@ -23,9 +23,21 @@ fun release(machineId: Int): Boolean {
 }
 
 fun protect(machineId: Int, passwordInLine: String): Boolean {
-    return Hart().protect(machineId, passwordInLine) ?: return false
+    val operationStatus = Hart().protect(machineId, passwordInLine) ?: return false
+    if (!operationStatus) {
+        println("Protect of id: $machineId failed")
+        return false
+    }
+    println("Protect of id: $machineId success")
+    return true
 }
 
 fun unprotect(machineId: Int, passwordInLine: String): Boolean {
-    return Hart().unprotect(machineId, passwordInLine) ?: return false
+    val operationStatus = Hart().unprotect(machineId, passwordInLine) ?: return false
+    if (!operationStatus) {
+        println("Unprotect of id: $machineId failed")
+        return false
+    }
+    println("Unprotect of id: $machineId success")
+    return true
 }
