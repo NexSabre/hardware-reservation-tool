@@ -2,16 +2,15 @@ package com.nexsabre.hardwarereservationtool.server.models
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import org.joda.time.DateTime
 
 @Serializable
 data class Element(val id: Int? = null,
                    val name: String?,
                    val address: String?,
                    @Contextual
-                   val start: DateTime? = null,
+                   val start: Long? = null,
                    @Contextual
-                   val ends: DateTime? = null,
+                   val ends: Long? = null,
                    @Contextual
                    val enabled: Boolean = true,
                    @Contextual

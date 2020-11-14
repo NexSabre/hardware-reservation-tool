@@ -81,4 +81,24 @@ class Hart {
         return getStatusCodeAndValidate(Endpoints().releaseMachineId(machineId))
     }
 
+    private fun changeProtectStatus(machineId: Int, protect: Boolean = true): String {
+        return when (protect) {
+            true -> Endpoints().machineProtect(machineId)
+            false -> Endpoints().machineUnprotect(machineId)
+        }
+    }
+
+    fun protect(machineId: Int, passwordInLine: String): Boolean? {
+        return this.postStatusCode(
+                this.changeProtectStatus(machineId),
+                Json.encodeToString(mapOf("password" to passwordInLine))
+        )
+    }
+
+    fun unprotect(machineId: Int, passwordInLine: String): Boolean? {
+        return this.postStatusCode(
+                this.changeProtectStatus(machineId, protect = false),
+                Json.encodeToString(mapOf("password" to passwordInLine))
+        )
+    }
 }

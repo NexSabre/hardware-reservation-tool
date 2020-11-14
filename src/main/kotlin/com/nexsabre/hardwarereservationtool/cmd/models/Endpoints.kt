@@ -14,6 +14,9 @@ class Endpoints(private val apiVersion: ApiVersion = ApiVersion.API_V1) {
 
     fun machine(id: Int) = uriBuilder("machines/$id")
 
+    fun machineProtect(id: Int) = uriBuilder("machines/$id/protect")
+    fun machineUnprotect(id: Int) = uriBuilder("machines/$id/unprotect")
+
     private fun baseBuilder(base: String = "http://localhost:8080/"): String {
         return base
     }
@@ -21,8 +24,4 @@ class Endpoints(private val apiVersion: ApiVersion = ApiVersion.API_V1) {
     private fun uriBuilder(endpoint: String): String {
         return "${baseBuilder()}${apiVersion.endpoint}$endpoint"
     }
-
-
 }
-
-

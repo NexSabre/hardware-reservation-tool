@@ -21,6 +21,11 @@ def get_reserved(machine_id):
         return {}
 
 
+def get_release_reservation(machine_id):
+    status = requests.get(c.api_v1(f"/reserve/{machine_id}/release"))
+    return True if status.status_code == 200 else False
+
+
 def post_reservation(machined_id, start=None, duration=0, **kwargs, ):
     json_data = {
         "id": machined_id,
