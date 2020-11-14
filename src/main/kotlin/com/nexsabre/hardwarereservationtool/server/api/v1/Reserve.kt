@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-data class ReservationRequest(val id: Int, val start: Any?, val duration: Number, val password: String?)
+data class ReservationRequest(val id: Int, val start: Any?, val duration: Int, val password: String?)
 
 
 @RestController
@@ -37,7 +37,7 @@ class Reserve {
             }
         }
 
-        return when (ReservationMachine().reserve(machineId)) {
+        return when (ReservationMachine().reserve(machineId, requestsBody.duration)) {
             true -> ResponseEntity.ok().build()
             false -> ResponseEntity.notFound().build()
         }

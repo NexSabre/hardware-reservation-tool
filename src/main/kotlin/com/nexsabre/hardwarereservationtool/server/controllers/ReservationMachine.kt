@@ -5,6 +5,7 @@ import com.nexsabre.hardwarereservationtool.server.models.Machine
 import com.nexsabre.hardwarereservationtool.server.models.toElement
 import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.Duration
 import org.joda.time.Instant
 
 fun allMachines(): List<Element> {
@@ -138,14 +139,17 @@ class ReservationMachine {
         return true
     }
 
-    fun reserve(machineId: Int): Boolean {
+    fun reserve(machineId: Int, duration: Int): Boolean {
         if (!this.isAvailable(machineId)) {
             return false
         }
         transaction {
             val machine = Machine.findById(machineId)
+            val now = Instant.now()
+            val end = now.plus(Duration.standardHours(4))
             machine?.let {
-                it.reservationStart = Instant.now().millis
+                it.reservationStart = now.millis
+                it.reservationEnds = end.millis
             }
         }
         return true
