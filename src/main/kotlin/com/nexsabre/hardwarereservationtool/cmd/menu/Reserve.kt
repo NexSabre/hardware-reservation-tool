@@ -34,8 +34,8 @@ class Reserve : CliktCommand() {
         }
 
         when (releaseFlag) {
-            true -> reserve(machineId!!)
-            false -> release(machineId!!)
+            true -> release(machineId!!)
+            false -> reserve(machineId!!)
         }
 
         when (protectFlag) {

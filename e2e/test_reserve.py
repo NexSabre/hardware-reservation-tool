@@ -7,13 +7,17 @@ from test_reservations import get_protect_password
 
 
 class TestReserve(unittest.TestCase):
+    # TODO rewrite this tests
+
     def setUp(self) -> None:
         self.example_machine = machines.add_example_machine()
 
     def test_add_reservation(self):
         r = reserve.post_reservation(self.example_machine["id"])
         assert r, ""
-        
+        get_reservation = reserve.is_reserved(self.example_machine["id"])
+        self.assertTrue(get_reservation)
+
     def test_release_reservation(self):
         r = reserve.post_reservation(self.example_machine["id"])
         assert r, ""
