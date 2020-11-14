@@ -7,21 +7,22 @@ from test_reservations import get_protect_password
 
 
 class TestReserve(unittest.TestCase):
-    # TODO rewrite this tests
-
     def setUp(self) -> None:
         self.example_machine = machines.add_example_machine()
 
     def test_add_reservation(self):
-        r = reserve.post_reservation(self.example_machine["id"])
-        assert r, ""
-        get_reservation = reserve.is_reserved(self.example_machine["id"])
-        self.assertTrue(get_reservation)
+        reserve.post_reservation(self.example_machine["id"])
+        is_reserved = reserve.is_reserved(self.example_machine["id"])
+        self.assertTrue(is_reserved)
 
     def test_release_reservation(self):
-        r = reserve.post_reservation(self.example_machine["id"])
-        assert r, ""
-        assert reserve.is_reserved(self.example_machine["id"])
+        reserve.post_reservation(self.example_machine["id"])
+        is_reserved = reserve.is_reserved(self.example_machine["id"])
+        self.assertTrue(is_reserved)
+
+        reserve.get_release_reservation(self.example_machine["id"])
+        is_reserved = reserve.is_reserved(self.example_machine["id"])
+        self.assertFalse(is_reserved)
         
     def test_negative_add_wrong_id_during_reservation(self):
         example_id = self.example_machine["id"]
