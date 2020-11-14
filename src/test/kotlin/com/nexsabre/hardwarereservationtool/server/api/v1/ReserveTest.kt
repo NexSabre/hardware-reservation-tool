@@ -13,7 +13,7 @@ import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.http.HttpStatus
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ReserveTest(@Autowired val restTemplate: TestRestTemplate): BaseTest() {
+internal class ReserveTest(@Autowired val restTemplate: TestRestTemplate) : BaseTest() {
 
     @BeforeEach
     fun createOneMachine() {
