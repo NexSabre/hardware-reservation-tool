@@ -146,10 +146,11 @@ class ReservationMachine {
         transaction {
             val machine = Machine.findById(machineId)
             val now = Instant.now()
-            val end = now.plus(Duration.standardHours(4))
             machine?.let {
                 it.reservationStart = now.millis
-                it.reservationEnds = end.millis
+                if (duration > 0) {
+                    it.reservationEnds = now.plus(Duration.standardHours(duration.toLong())).millis
+                }
             }
         }
         return true
