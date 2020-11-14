@@ -126,7 +126,7 @@ class ReservationMachine {
         return null
     }
 
-    fun getAvailable(): List<Element> = allMachines().filter { it.start == null}
+    fun getAvailable(): List<Element> = allMachines().filter { it.start == null }
 
     private fun isAvailable(machineId: Int): Boolean {
         val machine = this.get(machineId) ?: return false

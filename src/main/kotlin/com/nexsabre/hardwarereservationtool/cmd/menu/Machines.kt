@@ -10,7 +10,7 @@ import com.github.ajalt.clikt.parameters.options.switch
 import com.github.ajalt.clikt.parameters.types.int
 import com.nexsabre.hardwarereservationtool.cmd.showMachines
 
-class   Machines : CliktCommand() {
+class Machines : CliktCommand() {
     private val id: Int by argument().int().default(-1)
 
     private val chooseProtect by option().switch(

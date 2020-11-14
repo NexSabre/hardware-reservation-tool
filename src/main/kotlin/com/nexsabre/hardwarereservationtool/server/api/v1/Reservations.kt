@@ -16,7 +16,7 @@ class Reservations {
 
     @GetMapping("/{machineId}")
     fun reservation(@PathVariable machineId: Int): ResponseEntity<Element> {
-        return when(val machine: Element? = ReservationMachine().get(machineId)){
+        return when (val machine: Element? = ReservationMachine().get(machineId)) {
             null -> ResponseEntity.noContent().build()
             else -> ResponseEntity.ok().body(machine)
         }
