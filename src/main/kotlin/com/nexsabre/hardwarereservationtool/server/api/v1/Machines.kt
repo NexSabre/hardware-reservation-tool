@@ -27,7 +27,7 @@ class Machines {
     fun postAddMachine(@RequestBody machine: AddMachine): ResponseEntity<String> {
         val status = ReservationMachine().create(name = machine.name, address = machine.address, null, null)
         return when (status.first) {
-            true -> ResponseEntity.created(URI("${status.second.id}")).body(Json.encodeToString(status.second))
+            true -> ResponseEntity.created(URI("${status.second.id}")).body(Json.encodeToString<Element>(status.second))
             false -> ResponseEntity(HttpStatus.CONFLICT)
         }
     }

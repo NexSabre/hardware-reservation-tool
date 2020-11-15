@@ -54,7 +54,7 @@ class TestReserve(unittest.TestCase):
         self.assertTrue(self.example_machine["address"] in [x["address"] for x in reservations.get_all_reservations()])
 
         self.assertFalse(reserve.is_reserved(self.example_machine["id"]))
-        self.assertFalse(reserve.post_reservation(self.example_machine))
+        self.assertFalse(reserve.post_reservation(self.example_machine["id"]))
 
     def tearDown(self) -> None:
         machines.remove_all_machines()
