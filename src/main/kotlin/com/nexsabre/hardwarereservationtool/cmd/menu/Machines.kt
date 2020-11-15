@@ -8,7 +8,7 @@ import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.switch
 import com.github.ajalt.clikt.parameters.types.int
-import com.nexsabre.hardwarereservationtool.cmd.showMachines
+import com.nexsabre.hardwarereservationtool.cmd.helpers.showMachines
 
 class Machines : CliktCommand() {
     private val id: Int by argument().int().default(-1)

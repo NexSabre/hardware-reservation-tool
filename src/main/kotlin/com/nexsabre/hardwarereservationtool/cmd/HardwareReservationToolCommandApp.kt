@@ -1,6 +1,7 @@
 package com.nexsabre.hardwarereservationtool.cmd
 
 import com.github.ajalt.clikt.core.subcommands
+import com.nexsabre.hardwarereservationtool.cmd.helpers.checkServiceIsAlive
 import com.nexsabre.hardwarereservationtool.cmd.menu.*
 
 
