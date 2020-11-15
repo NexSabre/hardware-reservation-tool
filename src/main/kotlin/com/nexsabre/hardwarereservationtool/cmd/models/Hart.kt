@@ -12,7 +12,7 @@ class Hart {
     private fun postStatusCode(string: String,
                                jsonBody: String,
                                success: List<Int> = listOf(200..299).flatten(),
-                               fail: List<Int> = listOf(400..499).flatten()): Boolean? {
+                               fail: List<Int> = listOf(400..599).flatten()): Boolean? {
         val response = string.httpPost().jsonBody(jsonBody).responseString().second
         return when (response.statusCode) {
             in success -> true
@@ -28,7 +28,7 @@ class Hart {
 
     private fun getStatusCodeAndValidate(string: String,
                                          success: List<Int> = listOf(200..299).flatten(),
-                                         fail: List<Int> = listOf(400..499).flatten()): Boolean? {
+                                         fail: List<Int> = listOf(400..599).flatten()): Boolean? {
         val response = string.httpGet().responseString().second
         return when (response.statusCode) {
             in success -> true

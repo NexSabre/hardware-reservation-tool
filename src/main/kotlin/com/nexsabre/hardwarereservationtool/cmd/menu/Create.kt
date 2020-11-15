@@ -3,7 +3,7 @@ package com.nexsabre.hardwarereservationtool.cmd.menu
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
-import com.nexsabre.hardwarereservationtool.cmd.models.Hart
+import com.nexsabre.hardwarereservationtool.cmd.helpers.createNewMachine
 import kotlin.system.exitProcess
 
 class Create : CliktCommand() {
@@ -21,6 +21,6 @@ class Create : CliktCommand() {
             println("Address is required")
             exitProcess(0)
         }
-        Hart().createMachine(name!!, address!!)
+        createNewMachine(name!!, address!!)
     }
 }
