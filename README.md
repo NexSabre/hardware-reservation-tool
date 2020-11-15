@@ -13,6 +13,9 @@ Default starts at :8080. Records stored in lite sql database.
 ### API Endpoints
 Here is a simple list of available points:
 
+All api endpoints are visible by Swagger at (by default) http://localhost:8080/swagger
+
+
 #### GET api/v1/reservations
 Return a list of all available machines for reservation with theirs status (unavailable machines excluded)
 
