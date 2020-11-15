@@ -101,4 +101,15 @@ class Hart {
                 Json.encodeToString(mapOf("password" to passwordInLine))
         )
     }
+
+    fun createMachine(name: String, address: String, enabled: Boolean = true, protected: Boolean = false): Boolean? {
+        val data = mapOf(
+                "name" to name,
+                "address" to address)
+        return this.postStatusCode(
+                Endpoints().machines,
+                Json.encodeToString(data),
+                success = listOf(201)
+        )
+    }
 }

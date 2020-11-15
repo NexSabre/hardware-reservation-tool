@@ -8,6 +8,7 @@ fun main(array: Array<String>) {
     checkServiceIsAlive()
     HartCmd()
             .subcommands(
+                    Create(),
                     Info(),
                     Machines(),
                     Reserve(),
