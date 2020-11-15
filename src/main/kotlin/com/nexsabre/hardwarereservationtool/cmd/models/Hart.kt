@@ -112,4 +112,8 @@ class Hart {
                 success = listOf(201)
         )
     }
+
+    fun deleteMachine(machineId: Int): String? {
+        return getResultsOrNull(Endpoints().machineDelete(machineId))
+    }
 }

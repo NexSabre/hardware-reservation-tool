@@ -9,6 +9,7 @@ fun main(array: Array<String>) {
     HartCmd()
             .subcommands(
                     Create(),
+                    Delete(),
                     Info(),
                     Machines(),
                     Reserve(),
