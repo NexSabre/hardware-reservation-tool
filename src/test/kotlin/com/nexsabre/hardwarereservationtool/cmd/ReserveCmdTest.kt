@@ -1,6 +1,6 @@
 package com.nexsabre.hardwarereservationtool.cmd
 
-import com.nexsabre.hardwarereservationtool.cmd.helpers.getAllReservations
+import com.nexsabre.hardwarereservationtool.cmd.helpers.reservations.getAllReservations
 import com.nexsabre.hardwarereservationtool.server.models.Element
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach

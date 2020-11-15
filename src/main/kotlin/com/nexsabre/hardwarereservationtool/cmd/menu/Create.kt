@@ -3,7 +3,7 @@ package com.nexsabre.hardwarereservationtool.cmd.menu
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
-import com.nexsabre.hardwarereservationtool.cmd.helpers.createNewMachine
+import com.nexsabre.hardwarereservationtool.cmd.helpers.machines.createNewMachine
 import kotlin.system.exitProcess
 
 class Create : CliktCommand() {

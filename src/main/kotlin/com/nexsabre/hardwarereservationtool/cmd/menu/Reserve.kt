@@ -6,10 +6,10 @@ import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.switch
 import com.github.ajalt.clikt.parameters.types.int
-import com.nexsabre.hardwarereservationtool.cmd.helpers.protect
-import com.nexsabre.hardwarereservationtool.cmd.helpers.release
-import com.nexsabre.hardwarereservationtool.cmd.helpers.reserve
-import com.nexsabre.hardwarereservationtool.cmd.helpers.unprotect
+import com.nexsabre.hardwarereservationtool.cmd.helpers.reserve.protect
+import com.nexsabre.hardwarereservationtool.cmd.helpers.reserve.release
+import com.nexsabre.hardwarereservationtool.cmd.helpers.reserve.reserve
+import com.nexsabre.hardwarereservationtool.cmd.helpers.reserve.unprotect
 import kotlin.system.exitProcess
 
 class Reserve : CliktCommand() {

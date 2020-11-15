@@ -1,4 +1,4 @@
-package com.nexsabre.hardwarereservationtool.cmd.helpers
+package com.nexsabre.hardwarereservationtool.cmd.helpers.reservations
 
 import com.nexsabre.hardwarereservationtool.cmd.models.Hart
 import com.nexsabre.hardwarereservationtool.server.models.Element

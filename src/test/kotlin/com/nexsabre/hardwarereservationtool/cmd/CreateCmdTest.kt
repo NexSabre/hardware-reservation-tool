@@ -1,6 +1,6 @@
 package com.nexsabre.hardwarereservationtool.cmd
 
-import com.nexsabre.hardwarereservationtool.cmd.helpers.getAllMachines
+import com.nexsabre.hardwarereservationtool.cmd.helpers.machines.getAllMachines
 import org.junit.jupiter.api.Test
 import org.springframework.util.Assert
 import com.nexsabre.hardwarereservationtool.cmd.main as Application

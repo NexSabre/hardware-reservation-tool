@@ -1,5 +1,6 @@
-package com.nexsabre.hardwarereservationtool.cmd.helpers
+package com.nexsabre.hardwarereservationtool.cmd.helpers.machines
 
+import com.nexsabre.hardwarereservationtool.cmd.helpers.prettyPrint
 import kotlin.system.exitProcess
 
 fun showMachines(id: Int) {

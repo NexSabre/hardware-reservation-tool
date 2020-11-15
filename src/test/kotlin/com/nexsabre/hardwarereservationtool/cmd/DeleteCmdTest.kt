@@ -1,9 +1,9 @@
 package com.nexsabre.hardwarereservationtool.cmd
 
-import com.nexsabre.hardwarereservationtool.cmd.helpers.checkMachineExistsById
-import com.nexsabre.hardwarereservationtool.cmd.helpers.createNewMachine
-import com.nexsabre.hardwarereservationtool.cmd.helpers.deleteAllMachines
-import com.nexsabre.hardwarereservationtool.cmd.helpers.getAllMachines
+import com.nexsabre.hardwarereservationtool.cmd.helpers.machines.checkMachineExistsById
+import com.nexsabre.hardwarereservationtool.cmd.helpers.machines.createNewMachine
+import com.nexsabre.hardwarereservationtool.cmd.helpers.machines.deleteAllMachines
+import com.nexsabre.hardwarereservationtool.cmd.helpers.machines.getAllMachines
 import com.nexsabre.hardwarereservationtool.server.models.Element
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
