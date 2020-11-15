@@ -1,6 +1,5 @@
 package com.nexsabre.hardwarereservationtool.cmd.helpers
 
-import com.nexsabre.hardwarereservationtool.cmd.menu.deleteOneMachine
 import com.nexsabre.hardwarereservationtool.cmd.models.Hart
 import kotlin.system.exitProcess
 
