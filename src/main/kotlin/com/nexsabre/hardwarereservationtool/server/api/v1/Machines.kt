@@ -4,6 +4,7 @@ import com.nexsabre.hardwarereservationtool.server.configuration.Configuration
 import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachine
 import com.nexsabre.hardwarereservationtool.server.controllers.allMachines
 import com.nexsabre.hardwarereservationtool.server.models.Element
+import io.swagger.v3.oas.annotations.Operation
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.springframework.http.HttpStatus
@@ -19,11 +20,13 @@ data class PasswordBodyRequest(val password: String)
 @RequestMapping("/api/v1/machines")
 class Machines {
     @GetMapping
+    @Operation(summary = "Return a list of all devices")
     fun getAllMachines(): List<Element> {
         return allMachines()
     }
 
     @RequestMapping(method = [RequestMethod.POST], consumes = ["application/json"])
+    @Operation(summary = "Create a new machine")
     fun postAddMachine(@RequestBody machine: AddMachine): ResponseEntity<String> {
         val status = ReservationMachine().create(name = machine.name, address = machine.address, null, null)
         return when (status.first) {
@@ -33,12 +36,14 @@ class Machines {
     }
 
     @GetMapping("/{machineId}")
+    @Operation(summary = "Get detailed information about a specific machine")
     fun getSpecificMachine(@PathVariable machineId: Int): ResponseEntity<Element?> {
         val specificMachine = ReservationMachine().get(machineId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         return ResponseEntity.ok().body(specificMachine)
     }
 
     @GetMapping("/{machineId}/delete")
+    @Operation(summary = "Delete a machine with specific ID")
     fun deleteMachine(@PathVariable machineId: Int): ResponseEntity<String> {
         return when (ReservationMachine().delete(machineId)) {
             true -> ResponseEntity(HttpStatus.NO_CONTENT)
@@ -47,6 +52,8 @@ class Machines {
     }
 
     @GetMapping("/{machineId}/enable")
+    @Operation(summary = "Enable machine for reservation operation",
+            description = "When user create a new machine, by default it is \'enable\'")
     fun enableMachine(@PathVariable machineId: Int): ResponseEntity<String> {
         return when (ReservationMachine().enable(machineId)) {
             true -> ResponseEntity(HttpStatus.OK)
@@ -55,6 +62,8 @@ class Machines {
     }
 
     @GetMapping("/{machineId}/disable")
+    @Operation(summary = "Disable machine for reservation operation",
+            description = "Disabled machine can signalize, it is under maintenance")
     fun disableMachine(@PathVariable machineId: Int): ResponseEntity<String> {
         return when (ReservationMachine().disable(machineId)) {
             true -> ResponseEntity(HttpStatus.OK)
