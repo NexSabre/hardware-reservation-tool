@@ -1,7 +1,6 @@
 import unittest
 
-import reservations
-import machines
+from api_cmds import machines, reservations
 import yaml
 
 

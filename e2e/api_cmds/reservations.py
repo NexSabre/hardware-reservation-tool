@@ -3,7 +3,7 @@ from typing import Dict
 
 import requests
 
-import configuration as c
+from api_cmds import configuration as c
 
 
 def get_specific_reservation(machine_id) -> Dict:

@@ -1,7 +1,7 @@
 import json
 import requests
 
-import configuration as c
+from api_cmds import configuration as c
 
 
 def _change_protected(machine_id: int, password, state: bool) -> bool:
