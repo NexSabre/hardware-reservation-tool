@@ -72,6 +72,8 @@ class Machines {
     }
 
     @PostMapping("/{machineId}/protect", consumes = ["application/json"])
+    @Operation(summary = "Set a machine in protected state",
+            description = "If enabled, the only way to reserve it is using a request with master password")
     fun protectMachine(@PathVariable machineId: Int, @RequestBody passwordRequest: PasswordBodyRequest):
             ResponseEntity<String> {
         if (!Configuration().checkPassword(passwordRequest.password)) {
@@ -84,6 +86,8 @@ class Machines {
     }
 
     @PostMapping("/{machineId}/unprotect", consumes = ["application/json"])
+    @Operation(summary = "Release a machine from the protected state",
+            description = "No password is needed to reserve a machine")
     fun unprotectMachine(@PathVariable machineId: Int, @RequestBody passwordRequest: PasswordBodyRequest):
             ResponseEntity<String> {
         if (!Configuration().checkPassword(passwordRequest.password)) {
