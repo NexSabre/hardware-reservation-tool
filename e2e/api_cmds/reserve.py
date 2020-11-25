@@ -1,7 +1,7 @@
 import json
 import requests
 
-import configuration as c
+from api_cmds import configuration as c
 
 
 def is_reserved(machine_id):

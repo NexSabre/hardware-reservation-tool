@@ -1,7 +1,7 @@
 import unittest
 
-from machines import *
-from reservations import count_reservations
+from api_cmds.machines import *
+from api_cmds.reservations import count_reservations
 
 
 class TestMachines(unittest.TestCase):

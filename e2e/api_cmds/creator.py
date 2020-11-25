@@ -1,4 +1,4 @@
-from machines import add_example_machine, remove_all_machines
+from api_cmds.machines import add_example_machine, remove_all_machines
 
 import argparse
 

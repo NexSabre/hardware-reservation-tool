@@ -1,8 +1,6 @@
 import unittest
 
-import machines
-import reservations
-import reserve
+from api_cmds import machines, reservations, reserve
 from test_reservations import get_protect_password
 
 
