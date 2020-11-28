@@ -4,7 +4,7 @@ import com.nexsabre.hardwarereservationtool.server.configuration.Configuration
 import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachine
 import com.nexsabre.hardwarereservationtool.server.controllers.allMachines
 import com.nexsabre.hardwarereservationtool.server.models.Element
-import com.nexsabre.hardwarereservationtool.server.requests.AddMachine
+import com.nexsabre.hardwarereservationtool.server.requests.AddMachineRequest
 import com.nexsabre.hardwarereservationtool.server.requests.PasswordBodyRequest
 import io.swagger.v3.oas.annotations.Operation
 import kotlinx.serialization.encodeToString
@@ -25,7 +25,7 @@ class Machines {
 
     @RequestMapping(method = [RequestMethod.POST], consumes = ["application/json"])
     @Operation(summary = "Create a new machine")
-    fun postAddMachine(@RequestBody machine: AddMachine): ResponseEntity<String> {
+    fun postAddMachine(@RequestBody machine: AddMachineRequest): ResponseEntity<String> {
         val status = ReservationMachine().create(name = machine.name, address = machine.address, null, null)
         return when (status.first) {
             true -> ResponseEntity.created(URI("${status.second.id}")).body(Json.encodeToString<Element>(status.second))
