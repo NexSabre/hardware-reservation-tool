@@ -5,12 +5,11 @@ import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachin
 import com.nexsabre.hardwarereservationtool.server.models.Element
 import com.nexsabre.hardwarereservationtool.server.models.Machine
 import com.nexsabre.hardwarereservationtool.server.models.toElement
+import com.nexsabre.hardwarereservationtool.server.requests.ReservationRequest
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
-data class ReservationRequest(val id: Int, val start: Any?, val duration: Int = 0, val password: String?)
 
 
 @RestController

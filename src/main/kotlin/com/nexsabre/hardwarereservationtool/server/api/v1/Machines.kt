@@ -4,6 +4,8 @@ import com.nexsabre.hardwarereservationtool.server.configuration.Configuration
 import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachine
 import com.nexsabre.hardwarereservationtool.server.controllers.allMachines
 import com.nexsabre.hardwarereservationtool.server.models.Element
+import com.nexsabre.hardwarereservationtool.server.requests.AddMachine
+import com.nexsabre.hardwarereservationtool.server.requests.PasswordBodyRequest
 import io.swagger.v3.oas.annotations.Operation
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -11,10 +13,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI
-
-data class AddMachine(val name: String, val address: String, val enabled: Boolean = true)
-
-data class PasswordBodyRequest(val password: String)
 
 @RestController
 @RequestMapping("/api/v1/machines")
