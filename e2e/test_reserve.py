@@ -1,7 +1,7 @@
 import unittest
 
 from api_cmds import machines, reservations, reserve
-from test_reservations import get_protect_password
+from test_helpers.helpers import get_protect_password
 
 
 class TestReserve(unittest.TestCase):
