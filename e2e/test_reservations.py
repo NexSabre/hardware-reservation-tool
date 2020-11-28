@@ -75,13 +75,14 @@ class TestReservations(unittest.TestCase):
         r = reservations.get_all_reservations()
         machines.add_example_machine()
 
-        assert reserve.post_reservation(self.example_machine["id"])
+        self.assertTrue(reserve.post_reservation(self.example_machine["id"]), "Reservation request should be true")
 
         all_reservations = reservations.get_all_reservations()
         available_reservations = reservations.get_all_reservations(available=True)
 
-        assert len(available_reservations) < len(all_reservations), \
-            "Len of available reservations should be lower than all reservations"
+        self.assertFalse([x for x in available_reservations if x["start"]])
+        self.assertLess(len(available_reservations), len(all_reservations), "Len of available reservations should be "
+                                                                            "lower than all reservations")
 
     def tearDown(self) -> None:
         machines.remove_all_machines()
