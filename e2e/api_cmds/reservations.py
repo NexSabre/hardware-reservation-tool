@@ -15,8 +15,12 @@ def get_specific_reservation(machine_id) -> Dict:
         return {}
 
 
-def get_all_reservations() -> Dict:
-    content = requests.get(c.api_v1("/reservations")).content
+def get_all_reservations(available: bool = False) -> Dict:
+    content = None
+    if available:
+        content = requests.get(c.api_v1("/reservations?available=true")).content
+    else:
+        content = requests.get(c.api_v1("/reservations")).content
     return json.loads(content)
 
 

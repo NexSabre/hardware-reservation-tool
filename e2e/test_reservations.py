@@ -1,6 +1,6 @@
 import unittest
 
-from api_cmds import machines, reservations
+from api_cmds import machines, reservations, reserve
 import yaml
 
 
@@ -70,6 +70,18 @@ class TestReservations(unittest.TestCase):
 
         r = reservations.get_specific_reservation(self.example_machine["id"])
         self.assertFalse(r["protected"], "Machine should be protected")
+
+    def test_get_all_reservations_show_only_available(self):
+        r = reservations.get_all_reservations()
+        machines.add_example_machine()
+
+        assert reserve.post_reservation(self.example_machine["id"])
+
+        all_reservations = reservations.get_all_reservations()
+        available_reservations = reservations.get_all_reservations(available=True)
+
+        assert len(available_reservations) < len(all_reservations), \
+            "Len of available reservations should be lower than all reservations"
 
     def tearDown(self) -> None:
         machines.remove_all_machines()

@@ -4,10 +4,7 @@ import com.nexsabre.hardwarereservationtool.server.controllers.ReservationMachin
 import com.nexsabre.hardwarereservationtool.server.models.Element
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 
 @RestController
@@ -23,11 +20,17 @@ class Reservations {
     }
 
     @GetMapping
-    fun reservations(): List<Element> {
+    fun reservations(@RequestParam available: Boolean = false): List<Element> {
         return transaction {
-            ReservationMachine().all().filter {
+            val allEnabled = ReservationMachine().all().filter {
                 it.enabled
             }
+            if (available) {
+                return@transaction allEnabled.filter {
+                    it.start == null
+                }
+            }
+            return@transaction allEnabled
         }
     }
 }
