@@ -97,19 +97,21 @@ class Hart {
 
     fun unprotect(machineId: Int, passwordInLine: String): Boolean? {
         return this.postStatusCode(
-                this.changeProtectStatus(machineId, protect = false),
-                Json.encodeToString(mapOf("password" to passwordInLine))
+            this.changeProtectStatus(machineId, protect = false),
+            Json.encodeToString(mapOf("password" to passwordInLine))
         )
     }
 
-    fun createMachine(name: String, address: String, enabled: Boolean = true, protected: Boolean = false): Boolean? {
+    fun createMachine(name: String, address: String): Boolean? {
+        // enabled: Boolean = true, protected: Boolean = false
         val data = mapOf(
-                "name" to name,
-                "address" to address)
+            "name" to name,
+            "address" to address
+        )
         return this.postStatusCode(
-                Endpoints().machines,
-                Json.encodeToString(data),
-                success = listOf(201)
+            Endpoints().machines,
+            Json.encodeToString(data),
+            success = listOf(201)
         )
     }
 
