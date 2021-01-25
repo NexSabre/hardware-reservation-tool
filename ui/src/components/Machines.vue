@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="v">
     <h1> Hardware Reservation Tool</h1>
     {{ allMachines }} <br>
     <h2> Enabled machines </h2>
@@ -14,6 +14,10 @@
 
     </div>
   </div>
+  <div v-else>
+    <!-- TODO @NexSabre extends this with loading screen, before promise will be resolved -->
+    <h1>Connection issue with server?</h1>
+  </div>
 </template>
 
 <script>
@@ -25,6 +29,7 @@ export default {
   name: "Machines",
   data() {
     return {
+      v: false,
       machines: []
     }
   },
@@ -32,18 +37,34 @@ export default {
     MachineCards
   },
   methods: {
+    checkConnection() {
+      const baseURI = "http://localhost:8080/api/v1/info"
+      this.$http
+          .get(baseURI)
+          .then(result => {
+            console.log(result.status)
+            this.v = result.status === 200;
+          })
+          .catch(err => {
+            console.log("Error: " + err)
+            this.v = false
+          })
+    },
     getMachines() {
       const baseURI = Constants.machinesURI
-      this.$http.get(baseURI)
+      this.$http
+          .get(baseURI)
           .then(result => {
             result.data.forEach(item => {
               this.machines.push(new Machine(item))
             })
           })
+          .cat
     }
   },
   mounted() {
-    this.getMachines()
+    this.checkConnection();
+    this.getMachines();
   },
   computed: {
     allMachines() {
