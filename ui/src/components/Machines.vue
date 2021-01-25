@@ -20,6 +20,7 @@
 <script>
 import Constants from './Constants.js'
 import MachineCards from './MachineCards'
+import Machine from './models/Machine.js'
 
 export default {
     name: "Machines",
@@ -37,10 +38,9 @@ export default {
             this.$http.get(baseURI)
                 .then(result => {
                     result.data.forEach(item => {
-                        this.machines.push(item)
+                        this.machines.push(new Machine(item))
                     })
                 })
-            console.log(this.machines)
         }
     }, 
     mounted() {
