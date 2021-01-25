@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import Constants from './Constants.js'
+
 export default {
     name: "Machines",
     data() {
@@ -15,7 +17,8 @@ export default {
     },
     methods: {
         getMachines() {
-            const baseURI = "http://localhost:8080/api/v1/machines"
+            console.log(Constants.machinesURI)
+            const baseURI = Constants.machinesURI
             this.$http.get(baseURI)
                 .then(result => this.machines = result.data)
         }
