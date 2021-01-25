@@ -38,15 +38,14 @@ export default {
   },
   methods: {
     checkConnection() {
-      const baseURI = "http://localhost:8080/api/v1/info"
       this.$http
-          .get(baseURI)
+          .get(Constants.infoURI)
           .then(result => {
             console.log(result.status)
             this.v = result.status === 200;
           })
           .catch(err => {
-            console.log("Error: " + err)
+            console.log("HaRT Error: " + err)
             this.v = false
           })
     },

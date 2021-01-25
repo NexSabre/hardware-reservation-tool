@@ -8,10 +8,11 @@ const build = (uri) => {
 
 const machinesURI = build('/api/v1/machines');
 const reservationsURI = build('/api/v1/reservations');
-
+const infoURI = build('/api/v1/info')
 
 export default {
     machinesURI,
-    reservationsURI
+    reservationsURI,
+    infoURI
 }
 

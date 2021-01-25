@@ -5,7 +5,7 @@
       <h6 class="card-subtitle mb-2 text-muted">{{ machine.address }}</h6>
       <p class="card-text" v-if="machine.start !== '' && machine.ends !== ''">
         Start: {{ machine.start }}<br/>
-        Ends: {{ machines.ends }}
+        Ends: {{ machine.ends }}
       </p>
       <span class="badge badge-primary">Enabled: {{ machine.enabled }}</span>
       <span class="badge badge-warning">Protected: {{ machine.protected }}</span>
